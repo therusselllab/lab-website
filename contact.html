@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Russell Lab</title>
+  <meta name="description" content="Contact the Russell Lab at MRC LMS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .map-embed {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: calc(var(--radius) * 2);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--bg-muted);
+      margin-top: 2rem;
+    }
+    .map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" role="navigation" aria-label="Main">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-name">Russell Lab</span>
+        <span class="nav__logo-inst">MRC Laboratory of Medical Sciences</span>
+      </a>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="research.html">Research</a></li>
+        <li><a href="people.html">People</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="join.html" class="nav__join">Join Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero__inner">
+      <span class="section-label reveal">Contact</span>
+      <h1 class="reveal reveal-delay-1">Get in touch</h1>
+      <p class="reveal reveal-delay-2">
+        Questions about our research, potential collaborations, or joining the lab?
+        We'd love to hear from you.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- ===== Contact details ===== -->
+        <div>
+          <h2 style="margin-bottom:1.75rem;" class="reveal">Find us</h2>
+
+          <div class="contact-detail reveal reveal-delay-1">
+            <div class="contact-detail__icon">📍</div>
+            <div>
+              <div class="contact-detail__label">Address</div>
+              <div class="contact-detail__value">
+                Russell Lab<br>
+                MRC Laboratory of Medical Sciences<br>
+                Du Cane Road<br>
+                London W12 0NN<br>
+                United Kingdom
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-detail reveal reveal-delay-2">
+            <div class="contact-detail__icon">✉️</div>
+            <div>
+              <div class="contact-detail__label">Email</div>
+              <div class="contact-detail__value">
+                <!-- [PLACEHOLDER: Replace with your actual email address] -->
+                <a href="mailto:andrew.russell@mrc-lms.ac.uk">andrew.russell@mrc-lms.ac.uk</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-detail reveal reveal-delay-3">
+            <div class="contact-detail__icon">🔗</div>
+            <div>
+              <div class="contact-detail__label">Online</div>
+              <div class="contact-detail__value" style="display:flex; flex-direction:column; gap:0.3rem;">
+                <a href="https://lms.mrc.ac.uk" target="_blank" rel="noopener">MRC LMS profile</a>
+                <a href="https://orcid.org/0000-0001-5411-2807" target="_blank" rel="noopener">ORCID: 0000-0001-5411-2807</a>
+                <!-- [PLACEHOLDER: Add Twitter/X, LinkedIn, GitHub links] -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Embedded map — Hammersmith Hospital / MRC LMS -->
+          <div class="map-embed reveal reveal-delay-4">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.2378%2C51.5087%2C-0.2278%2C51.5137&layer=mapnik&marker=51.5112%2C-0.2328"
+              title="MRC LMS location map"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <p style="font-size:0.75rem; color:var(--text-light); margin-top:0.5rem;">
+            <a href="https://www.openstreetmap.org/?mlat=51.5112&mlon=-0.2328#map=16/51.5112/-0.2328" target="_blank" rel="noopener">View larger map</a>
+          </p>
+        </div>
+
+        <!-- ===== Contact form ===== -->
+        <div>
+          <h2 style="margin-bottom:1.75rem;" class="reveal">Send a message</h2>
+
+          <!--
+            NOTE ON THE FORM:
+            GitHub Pages is static — this form needs a backend to submit.
+            Options (all free-tier available):
+              1. Formspree (https://formspree.io) — add your endpoint to the action attribute
+              2. Netlify Forms — if you ever switch to Netlify hosting
+              3. EmailJS — client-side email sending
+
+            To use Formspree:
+              1. Create a free account at formspree.io
+              2. Create a form and copy the endpoint URL
+              3. Replace action="#" with action="https://formspree.io/f/YOUR_ID"
+              4. Add method="POST" — already included below
+          -->
+          <form
+            class="contact-form reveal reveal-delay-1"
+            action="https://formspree.io/f/[PLACEHOLDER: YOUR_FORMSPREE_ID]"
+            method="POST"
+          >
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="">Select a topic…</option>
+                <option value="research">Research enquiry</option>
+                <option value="collaboration">Collaboration</option>
+                <option value="join-postdoc">Joining as a postdoc</option>
+                <option value="join-phd">Joining as a PhD student</option>
+                <option value="media">Media / press</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Your message…" required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary">Send message →</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div>
+          <div class="footer__brand-name">Russell Lab</div>
+          <p class="footer__brand-desc">Technology development for understanding the effect of exposures on tissues.<br>MRC Laboratory of Medical Sciences, London.</p>
+        </div>
+        <div>
+          <div class="footer__col-title">Lab</div>
+          <ul class="footer__links">
+            <li><a href="research.html">Research</a></li>
+            <li><a href="people.html">People</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="news.html">News</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">Resources</div>
+          <ul class="footer__links">
+            <li><a href="resources.html">Tools &amp; Data</a></li>
+            <li><a href="join.html">Join Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">External</div>
+          <ul class="footer__links">
+            <li><a href="https://lms.mrc.ac.uk" target="_blank" rel="noopener">MRC LMS</a></li>
+            <li><a href="https://orcid.org/0000-0001-5411-2807" target="_blank" rel="noopener">ORCID</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span id="year"></span> Russell Lab · MRC LMS</span>
+        <div class="footer__social">
+          <a href="#">Twitter/X</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

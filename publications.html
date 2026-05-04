@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications — Russell Lab</title>
+  <meta name="description" content="Publications from the Russell Lab at MRC LMS, fetched live from Europe PMC.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .pub-year {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 2rem 0 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-light);
+      display: inline-block;
+    }
+    .pub-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .pub-filter-bar span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-right: 0.25rem;
+    }
+    .pub-filter-btn {
+      padding: 0.3rem 0.8rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .pub-filter-btn:hover,
+    .pub-filter-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+    .pub-stats {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .pub-stat {
+      text-align: center;
+    }
+    .pub-stat__value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .pub-stat__label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" role="navigation" aria-label="Main">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-name">Russell Lab</span>
+        <span class="nav__logo-inst">MRC Laboratory of Medical Sciences</span>
+      </a>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="research.html">Research</a></li>
+        <li><a href="people.html">People</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="join.html" class="nav__join">Join Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero__inner">
+      <span class="section-label reveal">Publications</span>
+      <h1 class="reveal reveal-delay-1">Our research output</h1>
+      <p class="reveal reveal-delay-2">
+        Publications are fetched live from
+        <a href="https://europepmc.org" target="_blank" rel="noopener">Europe PMC</a>
+        via ORCID
+        <a href="https://orcid.org/0000-0001-5411-2807" target="_blank" rel="noopener">0000-0001-5411-2807</a>.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="pub-stats reveal">
+        <div class="pub-stat">
+          <div class="pub-stat__value" id="pub-count">—</div>
+          <div class="pub-stat__label">Publications</div>
+        </div>
+        <!-- [PLACEHOLDER: You can add citation count here manually, or link to Google Scholar] -->
+      </div>
+
+      <div class="pub-filter-bar reveal reveal-delay-1" id="pub-year-filter">
+        <span>Filter:</span>
+        <button class="pub-filter-btn active" data-year="all">All years</button>
+        <!-- Year buttons are added dynamically by publications.js -->
+      </div>
+
+      <div id="pub-container">
+        <!-- Publications are injected here by publications.js -->
+      </div>
+
+      <p style="margin-top:2.5rem; font-size:0.82rem; color:var(--text-light);">
+        Also see:
+        <a href="https://orcid.org/0000-0001-5411-2807" target="_blank" rel="noopener">ORCID</a> ·
+        <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a>
+        <!-- [PLACEHOLDER: Replace Google Scholar link with your actual profile URL] -->
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div>
+          <div class="footer__brand-name">Russell Lab</div>
+          <p class="footer__brand-desc">Technology development for understanding the effect of exposures on tissues.<br>MRC Laboratory of Medical Sciences, London.</p>
+        </div>
+        <div>
+          <div class="footer__col-title">Lab</div>
+          <ul class="footer__links">
+            <li><a href="research.html">Research</a></li>
+            <li><a href="people.html">People</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="news.html">News</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">Resources</div>
+          <ul class="footer__links">
+            <li><a href="resources.html">Tools &amp; Data</a></li>
+            <li><a href="join.html">Join Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">External</div>
+          <ul class="footer__links">
+            <li><a href="https://lms.mrc.ac.uk" target="_blank" rel="noopener">MRC LMS</a></li>
+            <li><a href="https://orcid.org/0000-0001-5411-2807" target="_blank" rel="noopener">ORCID</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span id="year"></span> Russell Lab · MRC LMS</span>
+        <div class="footer__social">
+          <a href="#">Twitter/X</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/publications.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
