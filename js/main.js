@@ -59,4 +59,28 @@
     revealEls.forEach(el => observer.observe(el));
   }
 
+  // --- Hero background parallax ---
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    let animFrame;
+    let isHovering = false;
+
+    hero.addEventListener('mousemove', e => {
+      isHovering = true;
+      cancelAnimationFrame(animFrame);
+      animFrame = requestAnimationFrame(() => {
+        const rect = hero.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        // Shift ±4% horizontally around the 5% anchor; vertical locked to top
+        const bx = 5 + (x - 0.5) * 8;
+        hero.style.backgroundPosition = `${bx}% 0%`;
+      });
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      isHovering = false;
+      hero.style.backgroundPosition = '';
+    });
+  }
+
 })();
