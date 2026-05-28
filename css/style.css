@@ -350,6 +350,7 @@ p:last-child { margin-bottom: 0; }
   border: 1px solid var(--border);
   border-radius: calc(var(--radius) * 1.5);
   padding: 1.75rem;
+  text-align: center;
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 .card:hover {
@@ -366,6 +367,8 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 1.25rem;
 }
 .card__title { margin-bottom: 0.5rem; font-size: 1.05rem; }
@@ -593,7 +596,6 @@ p:last-child { margin-bottom: 0; }
 .page-hero p {
   font-size: 1.05rem;
   color: var(--text-muted);
-  max-width: 600px;
   margin-bottom: 2.5rem; /* adds gap only when a subheading is present */
 }
 
@@ -629,7 +631,7 @@ p:last-child { margin-bottom: 0; }
   color: var(--accent);
   margin-bottom: 0.75rem;
 }
-.research-area__title { margin-bottom: 1rem; }
+.research-area__title { margin-bottom: 1rem; font-size: 1.1rem; }
 .research-area__body { color: var(--text-muted); font-size: 0.95rem; line-height: 1.75; }
 
 /* --- Resources / Tools --- */

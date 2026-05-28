@@ -7,8 +7,140 @@
   <meta name="description" content="Meet the members of the Russell Lab at MRC LMS.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── People card grid ── */
+    .team-section {
+      margin-bottom: 4rem;
+    }
+    .team-section__label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-light);
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    /* Card grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.75rem;
+    }
+
+    /* Individual card */
+    .team-card {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      cursor: default;
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0, 62, 116, 0.12);
+      border-color: rgba(0, 62, 116, 0.25);
+    }
+
+    /* Photo area */
+    .team-card__photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: var(--bg-muted);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--text-light);
+    }
+    .team-card__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* No filter — colour photos as requested */
+    }
+
+    /* Text area */
+    .team-card__body {
+      padding: 1rem 1.1rem 1.2rem;
+    }
+    .team-card__name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+    }
+    .team-card:hover .team-card__name {
+      color: var(--accent);
+    }
+    .team-card__role {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .team-card__bio {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .team-card__links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .team-card__links a {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-light);
+      transition: color 0.2s;
+    }
+    .team-card__links a:hover {
+      color: var(--accent);
+    }
+
+    /* Alumni — horizontal list, no card */
+    .alumni-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .alumni-list li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.4rem 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .alumni-list li:first-child { border-top: 1px solid var(--border); }
+    .alumni-name { font-weight: 600; color: var(--text); }
+    .alumni-role { color: var(--text-muted); font-size: 0.82rem; }
+    .alumni-now  { color: var(--text-light); font-size: 0.82rem; margin-left: auto; }
+
+    @media (max-width: 600px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      .team-grid--pi {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -25,10 +157,9 @@
         <li><a href="research.html">Research</a></li>
         <li><a href="people.html">People</a></li>
         <li><a href="publications.html">Publications</a></li>
-        <li><a href="news.html">News</a></li>
         <li><a href="resources.html">Resources</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="join.html" class="nav__join">Join Us</a></li>
+        <li><a href="join.html">Join Us</a></li>
       </ul>
     </div>
   </nav>
@@ -36,161 +167,74 @@
   <div class="page-hero">
     <div class="page-hero__inner">
       <span class="section-label reveal">People</span>
-      <h1 class="reveal reveal-delay-1">The team</h1>
-      <p class="reveal reveal-delay-2">
-        We are a collaborative, interdisciplinary group based at the MRC Laboratory of Medical Sciences.
-        <!-- [PLACEHOLDER: Add a sentence about your lab culture or what you look for in team members] -->
-      </p>
     </div>
   </div>
 
-  <!-- ===== Principal Investigator ===== -->
   <section class="section">
     <div class="container">
-      <span class="section-label reveal">Principal Investigator</span>
 
-      <div style="display:grid; grid-template-columns: 180px 1fr; gap: 3rem; align-items: start; margin-top: 2rem;" class="reveal reveal-delay-1">
-        <div>
-          <div class="person-card__photo" style="width:160px; height:160px; border-radius:12px;">
-            <!-- [PLACEHOLDER: <img src="assets/images/andrew-russell.jpg" alt="Dr Andrew Russell"> -->
-            👤
+      <!--
+        HOW TO ADD A PERSON:
+        Copy a team-card block below, fill in the details, and remove placeholder comments.
+        For the photo: replace the emoji with <img src="assets/images/name.jpg" alt="Name">
+        All roles sit in the same grid — no section headers.
+      -->
+      <div class="team-grid reveal">
+
+        <div class="team-card">
+          <div class="team-card__photo">
+            <img src="assets/images/20190515-GRL_1212-high-res.JPG" alt="Dr Andrew Russell">
+          </div>
+          <div class="team-card__body">
+            <div class="team-card__name">Dr Andrew Russell</div>
+            <div class="team-card__role">Group Leader</div>
+            <p class="team-card__bio">
+              <a href="mailto:a.russell@lms.mrc.ac.uk">a.russell@lms.mrc.ac.uk</a><br><br>
+              Andy leads the Tissue Biology Lab at the MRC LMS. He received his PhD from the
+              University of Cambridge / Wellcome Sanger Institute in 2021. He was then awarded
+              an EMBO Postdoctoral Fellowship (2022) and the BroadIgnite award (2024) whilst
+              in the laboratory of Dr. Fei Chen at The Broad Institute of MIT and Harvard and
+              the Harvard Department of Stem Cell and Regenerative Biology.
+            </p>
+            <div class="team-card__links">
+              <a href="https://orcid.org/0000-0001-5411-2807" target="_blank" rel="noopener">ORCID</a>
+              <a href="https://scholar.google.com/citations?user=k30qwkIAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+            </div>
           </div>
         </div>
-        <div>
-          <h2 style="margin-bottom:0.3rem;">Dr Andrew Russell</h2>
-          <p style="color:var(--accent); font-weight:600; font-size:0.9rem; margin-bottom:1rem;">
-            Group Leader, MRC Laboratory of Medical Sciences
-          </p>
-          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.75; max-width:640px;">
-            <!-- [PLACEHOLDER: 3–4 sentence bio — research background, previous positions, interests.
-                 Example: "Andrew received his PhD from... Before starting his own group, he was a postdoc at...
-                 His lab now focuses on..."] -->
-            [PLACEHOLDER: Andrew's bio here.]
-          </p>
-          <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1.25rem;">
-            <a href="https://orcid.org/0000-0001-5411-2807" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:0.82rem; padding:0.4rem 0.9rem;">ORCID</a>
-            <!-- [PLACEHOLDER: Add Google Scholar, Twitter/X, LinkedIn links below] -->
-            <a href="#" class="btn btn--outline" style="font-size:0.82rem; padding:0.4rem 0.9rem;">Google Scholar</a>
-            <a href="mailto:[PLACEHOLDER: your-email@mrc-lms.ac.uk]" class="btn btn--outline" style="font-size:0.82rem; padding:0.4rem 0.9rem;">Email</a>
+
+        <div class="team-card">
+          <div class="team-card__photo" style="background: var(--accent-light); font-size: 2rem;">+</div>
+          <div class="team-card__body">
+            <div class="team-card__name">You?</div>
+            <div class="team-card__role">We're hiring</div>
+            <p class="team-card__bio">We are looking for curious, motivated researchers to join the lab.</p>
+            <div class="team-card__links">
+              <a href="join.html">See open positions →</a>
+            </div>
           </div>
         </div>
+
       </div>
-    </div>
-  </section>
 
-  <!-- ===== Postdoctoral Researchers ===== -->
-  <section class="section section--soft">
-    <div class="container">
-      <span class="section-label reveal">Postdoctoral Researchers</span>
-      <h2 class="section-heading reveal reveal-delay-1" style="margin-bottom:2rem;">Postdocs</h2>
 
-      <div class="grid-4">
-        <!-- [PLACEHOLDER: Duplicate this card for each postdoc. Remove section if none yet.] -->
-        <div class="card person-card reveal reveal-delay-1">
-          <div class="person-card__photo">👤</div>
-          <h3 class="person-card__name">[PLACEHOLDER: Name]</h3>
-          <div class="person-card__role">Postdoctoral Researcher</div>
-          <p class="person-card__bio">[PLACEHOLDER: 1–2 sentence bio or research focus.]</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PhD Students ===== -->
-  <section class="section">
-    <div class="container">
-      <span class="section-label reveal">PhD Students</span>
-      <h2 class="section-heading reveal reveal-delay-1" style="margin-bottom:2rem;">Graduate students</h2>
-
-      <div class="grid-4">
-        <!-- [PLACEHOLDER: Duplicate this card for each student.] -->
-        <div class="card person-card reveal reveal-delay-1">
-          <div class="person-card__photo">👤</div>
-          <h3 class="person-card__name">[PLACEHOLDER: Name]</h3>
-          <div class="person-card__role">PhD Student</div>
-          <p class="person-card__bio">[PLACEHOLDER: 1–2 sentence bio or research focus.]</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Research Staff / Technicians ===== -->
-  <section class="section section--soft">
-    <div class="container">
-      <span class="section-label reveal">Research Staff</span>
-      <h2 class="section-heading reveal reveal-delay-1" style="margin-bottom:2rem;">Staff scientists &amp; technicians</h2>
-
-      <div class="grid-4">
-        <!-- [PLACEHOLDER: Duplicate this card for each staff member. Remove section if not applicable.] -->
-        <div class="card person-card reveal reveal-delay-1">
-          <div class="person-card__photo">👤</div>
-          <h3 class="person-card__name">[PLACEHOLDER: Name]</h3>
-          <div class="person-card__role">[PLACEHOLDER: Role title]</div>
-          <p class="person-card__bio">[PLACEHOLDER: 1–2 sentence bio.]</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Alumni ===== -->
-  <section class="section">
-    <div class="container">
-      <span class="section-label reveal">Alumni</span>
-      <h2 class="section-heading reveal reveal-delay-1">Where our people go</h2>
-      <p class="section-subheading reveal reveal-delay-2">
-        Former lab members and their current positions.
-      </p>
-      <!-- [PLACEHOLDER: Add alumni as a simple list or table.
-           Format: Name — Role in lab (years) → Current position] -->
-      <ul class="resource-list reveal reveal-delay-1" style="max-width:640px;">
-        <li>
-          <div>
-            <div class="resource-list__name">[PLACEHOLDER: Former member name]</div>
-            <div class="resource-list__desc">[Role, years] → [Current position &amp; institution]</div>
-          </div>
-        </li>
-      </ul>
     </div>
   </section>
 
   <footer class="footer">
     <div class="footer__inner">
-      <div class="footer__top">
-        <div>
-          <div class="footer__brand-name">Russell Lab</div>
-          <p class="footer__brand-desc">Technology development for understanding the effect of exposures on tissues.<br>MRC Laboratory of Medical Sciences, London.</p>
-        </div>
-        <div>
-          <div class="footer__col-title">Lab</div>
-          <ul class="footer__links">
-            <li><a href="research.html">Research</a></li>
-            <li><a href="people.html">People</a></li>
-            <li><a href="publications.html">Publications</a></li>
-            <li><a href="news.html">News</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer__col-title">Resources</div>
-          <ul class="footer__links">
-            <li><a href="resources.html">Tools &amp; Data</a></li>
-            <li><a href="join.html">Join Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer__col-title">External</div>
-          <ul class="footer__links">
-            <li><a href="https://lms.mrc.ac.uk" target="_blank" rel="noopener">MRC LMS</a></li>
-            <li><a href="https://orcid.org/0000-0001-5411-2807" target="_blank" rel="noopener">ORCID</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <span>© <span id="year"></span> Russell Lab · MRC LMS</span>
-        <div class="footer__social">
-          <a href="#">Twitter/X</a>
-          <a href="#">GitHub</a>
-        </div>
+      <span>© <span id="year"></span> Russell Lab · <a href="https://lms.mrc.ac.uk" target="_blank" rel="noopener">MRC Laboratory of Medical Sciences</a></span>
+      <div class="footer__right">
+        <a href="https://bsky.app/profile/ajcrussell.bsky.social" target="_blank" rel="noopener" aria-label="Bluesky" class="footer__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.204-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/therusselllab" target="_blank" rel="noopener" aria-label="GitHub" class="footer__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
       </div>
     </div>
   </footer>
