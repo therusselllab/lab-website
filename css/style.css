@@ -740,29 +740,12 @@ p:last-child { margin-bottom: 0; }
 /* --- Photos (LMS images) --- */
 .photo { margin: 0; }
 .photo img { width: 100%; border-radius: 10px; }
-.photo figcaption,
-.photo-credit {
+.photo figcaption {
   margin-top: 0.6rem;
   font-size: 0.8rem;
   color: var(--text-light);
 }
-.photo figcaption a,
-.photo-credit a { color: var(--text-light); text-decoration: underline; }
-.photo-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 1.75rem;
-}
-.photo-strip img {
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  border-radius: 10px;
-}
-@media (max-width: 768px) {
-  .photo-strip { grid-template-columns: 1fr; }
-}
+.photo figcaption a { color: var(--text-light); text-decoration: underline; }
 
 /* --- Contact --- */
 .contact-grid {
