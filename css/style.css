@@ -737,6 +737,33 @@ p:last-child { margin-bottom: 0; }
 .position-card__title { font-size: 1.05rem; margin-bottom: 0.5rem; }
 .position-card__body { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem; }
 
+/* --- Photos (LMS images) --- */
+.photo { margin: 0; }
+.photo img { width: 100%; border-radius: 10px; }
+.photo figcaption,
+.photo-credit {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+.photo figcaption a,
+.photo-credit a { color: var(--text-light); text-decoration: underline; }
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+.photo-strip img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 10px;
+}
+@media (max-width: 768px) {
+  .photo-strip { grid-template-columns: 1fr; }
+}
+
 /* --- Contact --- */
 .contact-grid {
   display: grid;
