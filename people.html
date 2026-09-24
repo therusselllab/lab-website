@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>People — Russell Lab</title>
+  <title>People | Russell Lab</title>
   <meta name="description" content="Meet the members of the Russell Lab at MRC LMS.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
   <style>
     /* ── People card grid ── */
     .team-section {
@@ -29,7 +29,7 @@
     /* Card grid */
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 1.75rem;
     }
 
@@ -39,13 +39,6 @@
       overflow: hidden;
       border: 1px solid var(--border);
       background: var(--bg);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-      cursor: default;
-    }
-    .team-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 32px rgba(0, 62, 116, 0.12);
-      border-color: rgba(0, 62, 116, 0.25);
     }
 
     /* Photo area */
@@ -72,17 +65,14 @@
       padding: 1rem 1.1rem 1.2rem;
     }
     .team-card__name {
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 0.2rem;
       line-height: 1.3;
     }
-    .team-card:hover .team-card__name {
-      color: var(--accent);
-    }
     .team-card__role {
-      font-size: 0.72rem;
+      font-size: 0.8rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -90,7 +80,7 @@
       margin-bottom: 0.6rem;
     }
     .team-card__bio {
-      font-size: 0.82rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
       line-height: 1.6;
       margin-bottom: 0.75rem;
@@ -101,7 +91,7 @@
       flex-wrap: wrap;
     }
     .team-card__links a {
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       font-weight: 600;
       color: var(--text-light);
       transition: color 0.2s;
@@ -208,7 +198,7 @@
           <div class="team-card__body">
             <div class="team-card__name">You?</div>
             <div class="team-card__role">We're hiring</div>
-            <p class="team-card__bio">We are building a team of creative, curious, and motivated researchers. Come help us ask new questions in exposure-related tissue biology.</p>
+            <p class="team-card__bio">We are looking for curious, motivated researchers to join the lab.</p>
             <div class="team-card__links">
               <a href="join.html">See open positions →</a>
             </div>
@@ -239,7 +229,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=2"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

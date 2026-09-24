@@ -56,17 +56,41 @@ function formatAuthors(authorsStr) {
     .join(', ');
 }
 
+/* ---- Tidy journal names: "Nature reviews. Genetics" -> "Nature Reviews Genetics" ---- */
+function formatJournal(name) {
+  const small = ['of', 'and', 'the', 'in', 'for', 'on'];
+  return name
+    .replace(/\s*\(.*?\)\s*/g, ' ')
+    .replace(/\.\s+/g, ' ')
+    .trim()
+    .split(/\s+/)
+    .map((w, i) => {
+      if (/[A-Z]/.test(w.slice(1))) return w;            // eLife, bioRxiv
+      if (i > 0 && small.includes(w.toLowerCase())) return w.toLowerCase();
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    })
+    .join(' ');
+}
+
+/* ---- Free full-text PDF (open access or free to read), if Europe PMC has one ---- */
+function freePdfUrl(pub) {
+  const urls = (pub.fullTextUrlList?.fullTextUrl || [])
+    .filter(u => u.documentStyle === 'pdf' && ['OA', 'F'].includes(u.availabilityCode));
+  const best = urls.find(u => u.site === 'Europe_PMC') || urls[0];
+  return best ? best.url : null;
+}
+
 /* ---- Render a single publication ---- */
 function renderPub(pub) {
   const title = pub.title || 'Untitled';
   const authors = formatAuthors(pub.authorString);
   const rawJournal = pub.journalInfo?.journal?.title || pub.journalInfo?.journal?.isoabbreviation || pub.bookOrReportDetails?.publisher || pub.journalTitle || '';
-  const journal = rawJournal.replace(/\s*\(.*?\)\s*/g, '').trim();
+  const journal = formatJournal(rawJournal);
   const year = pub.pubYear || '';
-  const volume = pub.journalVolume ? `${pub.journalVolume}` : '';
-  const pages = pub.pageInfo ? `:${pub.pageInfo}` : '';
+  const volumePages = [pub.journalVolume, pub.pageInfo].filter(Boolean).join(':');
   const doi = pub.doi;
   const pmid = pub.pmid;
+  const pdf = freePdfUrl(pub);
 
   const titleLink = doi
     ? `<a class="pub-item__title-link" href="https://doi.org/${doi}" target="_blank" rel="noopener">${title}</a>`
@@ -75,7 +99,8 @@ function renderPub(pub) {
   const metaParts = [
     journal ? `<span class="pub-item__journal">${journal}</span>` : '',
     year,
-    volume + pages,
+    volumePages,
+    pdf ? `<a class="pub-item__doi" href="${pdf}" target="_blank" rel="noopener">PDF</a>` : '',
     doi ? `<a class="pub-item__doi" href="https://doi.org/${doi}" target="_blank" rel="noopener">DOI: ${doi}</a>` : '',
     pmid ? `<a class="pub-item__doi" href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener">PubMed</a>` : '',
   ].filter(Boolean);
