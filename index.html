@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=5">
   <style>
     /* Home-specific extras */
     .pub-year { font-size: 0.85rem; font-weight: 700; color: var(--text-light); letter-spacing: 0.05em; margin: 1.5rem 0 0.25rem; }
@@ -41,17 +41,27 @@
   <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="hero__inner">
-      <h1 class="hero__title">
-        How exposures shape <em>tissue biology</em>
-      </h1>
-      <p class="hero__tagline">
-        We study how the chemicals in our environment reshape our
-        biology. We do this by building and applying new technologies.
-      </p>
-      <div class="hero__actions">
-        <a href="research.html" class="btn btn--primary">Our Research →</a>
-        <a href="join.html" class="btn btn--outline">Join the Lab</a>
+      <div class="hero__main">
+        <h1 class="hero__title">
+          How exposures shape <em>tissue biology</em>
+        </h1>
+        <p class="hero__tagline">
+          We study how the chemicals in our environment reshape our
+          biology. We do this by building and applying new technologies.
+        </p>
+        <div class="hero__actions">
+          <a href="research.html" class="btn btn--primary">Our Research →</a>
+          <a href="join.html" class="btn btn--outline">Join the Lab</a>
+        </div>
       </div>
+      <aside class="hero__panel">
+        <span class="hero__panel-label">Our approach</span>
+        <p>
+          Building on our expertise in single-cell and spatial genomics, we are developing
+          new platforms to screen exposures and profile their effects on tissues, from
+          carcinogens to PFAS and endocrine disruptors.
+        </p>
+      </aside>
     </div>
   </section>
 
@@ -75,8 +85,8 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=2"></script>
-  <script src="js/contours.js?v=2"></script>
+  <script src="js/main.js?v=5"></script>
+  <script src="js/contours.js?v=5"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

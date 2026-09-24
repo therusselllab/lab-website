@@ -21,6 +21,27 @@ const CONFIG = {
 
   // Highlight these author names in bold
   HIGHLIGHT_AUTHORS: ['Russell A', 'Russell AR', 'Andrew Russell'],
+
+  // Hand-picked papers shown above the full list, in this order.
+  // Details are fetched by DOI; `pdf` overrides the automatic free-PDF link.
+  SELECTED: [
+    {
+      heading: 'Slide-tags technology',
+      papers: [
+        { doi: '10.1038/s41586-023-06837-4' },
+        { doi: '10.1038/s41576-024-00797-9' },
+      ],
+    },
+    {
+      heading: 'Applications of Slide-tags',
+      papers: [
+        { doi: '10.1038/s41591-024-03073-9' },
+        { doi: '10.1038/s41588-026-02739-z',
+          pdf: 'https://www.biorxiv.org/content/10.1101/2024.10.21.619529.full.pdf', pdfLabel: 'Preprint PDF' },
+        { doi: '10.1101/2025.10.08.681007' },
+      ],
+    },
+  ],
 };
 
 /* ---- API Query Builder ---- */
@@ -77,7 +98,11 @@ function freePdfUrl(pub) {
   const urls = (pub.fullTextUrlList?.fullTextUrl || [])
     .filter(u => u.documentStyle === 'pdf' && ['OA', 'F'].includes(u.availabilityCode));
   const best = urls.find(u => u.site === 'Europe_PMC') || urls[0];
-  return best ? best.url : null;
+  if (best) return best.url;
+  // bioRxiv / medRxiv preprints are always free; this address redirects to the latest version
+  const server = { biorxiv: 'www.biorxiv.org', medrxiv: 'www.medrxiv.org' }[(pub.journalInfo?.journal?.title || pub.bookOrReportDetails?.publisher || '').toLowerCase()];
+  if (server && pub.doi) return `https://${server}/content/${pub.doi}.full.pdf`;
+  return null;
 }
 
 /* ---- Render a single publication ---- */
@@ -137,6 +162,58 @@ function groupByYear(pubs) {
   return Object.entries(groups).sort(([a], [b]) => b - a);
 }
 
+/* ---- Selected publications ---- */
+function shortAuthors(authorsStr) {
+  const list = (authorsStr || '').replace(/\.$/, '').split(', ').filter(Boolean);
+  if (list.length <= 4) return formatAuthors(list.join(', '));
+  const isUs = a => CONFIG.HIGHLIGHT_AUTHORS.some(h => a.toLowerCase().includes(h.toLowerCase()));
+  const shown = list.slice(0, 3);
+  const us = list.findIndex(isUs);
+  if (us >= 3) shown.push('…', list[us]);
+  return formatAuthors(shown.join(', ')).replace(', …,', ' … ') + ' et al.';
+}
+
+function renderSelectedPub(pub, override) {
+  const journal = formatJournal(pub.journalInfo?.journal?.title || pub.bookOrReportDetails?.publisher || pub.journalTitle || '');
+  const pdf = override.pdf || freePdfUrl(pub);
+  const title = pub.doi
+    ? `<a class="pub-item__title-link" href="https://doi.org/${pub.doi}" target="_blank" rel="noopener">${pub.title}</a>`
+    : pub.title;
+  const links = [
+    pdf ? `<a class="pub-link" href="${pdf}" target="_blank" rel="noopener">${override.pdfLabel || 'PDF'}</a>` : '',
+    pub.doi ? `<a class="pub-link" href="https://doi.org/${pub.doi}" target="_blank" rel="noopener">Article</a>` : '',
+  ].filter(Boolean).join('');
+  return `
+    <div class="pub-selected">
+      <div class="pub-item__title">${title}</div>
+      <div class="pub-item__authors">${shortAuthors(pub.authorString)}</div>
+      <div class="pub-item__meta"><span class="pub-item__journal">${journal}</span><span>·</span>${pub.pubYear || ''}</div>
+      ${links ? `<div class="pub-selected__links">${links}</div>` : ''}
+    </div>`;
+}
+
+async function renderSelected() {
+  const container = document.getElementById('pub-selected');
+  if (!container || !CONFIG.SELECTED?.length) return;
+  const all = CONFIG.SELECTED.flatMap(g => g.papers);
+  const query = encodeURIComponent(all.map(p => `DOI:"${p.doi}"`).join(' OR '));
+  try {
+    const resp = await fetch(`https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=${query}&format=json&resultType=core&pageSize=${all.length * 2}`);
+    if (!resp.ok) throw new Error(resp.status);
+    const results = (await resp.json()).resultList?.result || [];
+    const byDoi = {};
+    results.forEach(p => { if (p.doi && !byDoi[p.doi.toLowerCase()]) byDoi[p.doi.toLowerCase()] = p; });
+    container.innerHTML = CONFIG.SELECTED.map(g => `
+      <h3 class="pub-selected__heading">${g.heading}</h3>
+      <div class="pub-selected__grid">
+        ${g.papers.map(p => byDoi[p.doi.toLowerCase()]).map((pub, i) => pub ? renderSelectedPub(pub, g.papers[i]) : '').join('')}
+      </div>`).join('');
+  } catch (err) {
+    console.error(err);
+    container.closest('.pub-selected-section')?.remove();
+  }
+}
+
 /* ---- Main render function ---- */
 async function renderPublications() {
   const container = document.getElementById('pub-container');
@@ -188,5 +265,6 @@ async function renderPublications() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  renderSelected();
   renderPublications();
 });
