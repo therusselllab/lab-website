@@ -60,7 +60,8 @@ function formatAuthors(authorsStr) {
 function renderPub(pub) {
   const title = pub.title || 'Untitled';
   const authors = formatAuthors(pub.authorString);
-  const journal = pub.journalTitle || pub.journalAbbreviation || '';
+  const rawJournal = pub.journalInfo?.journal?.title || pub.journalInfo?.journal?.isoabbreviation || pub.bookOrReportDetails?.publisher || pub.journalTitle || '';
+  const journal = rawJournal.replace(/\s*\(.*?\)\s*/g, '').trim();
   const year = pub.pubYear || '';
   const volume = pub.journalVolume ? `${pub.journalVolume}` : '';
   const pages = pub.pageInfo ? `:${pub.pageInfo}` : '';
@@ -88,6 +89,18 @@ function renderPub(pub) {
   `;
 }
 
+/* ---- Filter out corrections, errata, retractions ---- */
+function filterPubs(pubs) {
+  const excludeTypes = ['correction', 'erratum', 'published erratum', 'retraction'];
+  return pubs.filter(p => {
+    const types = (p.pubTypeList?.pubType || []).map(t => t.toLowerCase());
+    const titleLower = (p.title || '').toLowerCase();
+    const isExcludedType = types.some(t => excludeTypes.includes(t));
+    const isExcludedTitle = /^(correction|erratum|retraction)\b/.test(titleLower);
+    return !isExcludedType && !isExcludedTitle;
+  });
+}
+
 /* ---- Group publications by year ---- */
 function groupByYear(pubs) {
   const groups = {};
@@ -112,7 +125,7 @@ async function renderPublications() {
     </div>`;
 
   try {
-    const pubs = await fetchPublications();
+    const pubs = filterPubs(await fetchPublications());
 
     if (!pubs.length) {
       container.innerHTML = `<p class="text-muted">No publications found. Check your ORCID or name configuration in <code>js/publications.js</code>.</p>`;
@@ -149,23 +162,6 @@ async function renderPublications() {
   }
 }
 
-/* ---- Year filter buttons ---- */
-function initYearFilter() {
-  const filterEl = document.getElementById('pub-year-filter');
-  if (!filterEl) return;
-  filterEl.addEventListener('click', e => {
-    const btn = e.target.closest('[data-year]');
-    if (!btn) return;
-    filterEl.querySelectorAll('[data-year]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const year = btn.dataset.year;
-    document.querySelectorAll('.pub-year-group').forEach(g => {
-      g.style.display = (year === 'all' || g.querySelector('.pub-year')?.textContent === year)
-        ? '' : 'none';
-    });
-  });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-  renderPublications().then(initYearFilter);
+  renderPublications();
 });
