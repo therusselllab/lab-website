@@ -682,6 +682,8 @@ p:last-child { margin-bottom: 0; }
   overflow: hidden;
 }
 .research-area__image img { width: 100%; height: 100%; object-fit: cover; }
+.research-area__image--contain { background: #fff; }
+.research-area__image--contain img { object-fit: contain; }
 .research-area__number {
   font-size: 0.95rem;
   font-weight: 700;
