@@ -147,7 +147,9 @@ function filterPubs(pubs) {
     const titleLower = (p.title || '').toLowerCase();
     const isExcludedType = types.some(t => excludeTypes.includes(t));
     const isExcludedTitle = /^(correction|erratum|retraction)\b/.test(titleLower);
-    return !isExcludedType && !isExcludedTitle;
+    // Preprints whose journal version is already in the list
+    const isPublishedPreprint = (p.commentCorrectionList?.commentCorrection || []).some(c => c.type === 'Preprint of');
+    return !isExcludedType && !isExcludedTitle && !isPublishedPreprint;
   });
 }
 

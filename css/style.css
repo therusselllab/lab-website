@@ -226,7 +226,6 @@ p:last-child { margin-bottom: 0; }
   padding-top: var(--nav-h);
   position: relative;
   overflow: hidden;
-  background-image: url('../assets/images/hero-bg.jpg'); /* fallback for very old browsers */
   background-image: url('../assets/images/contour_map_2_colors.svg');
   background-size: 110% auto;   /* fills width; square image extends below viewport so top is always visible */
   background-position: 5% 0%;  /* anchor to top; slight left-of-centre to frame whitespace region */
