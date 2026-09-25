@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="stylesheet" href="css/style.css?v=10">
+  <link rel="stylesheet" href="css/style.css?v=11">
 </head>
-<body>
+<body class="page-join">
 
   <nav class="nav" role="navigation" aria-label="Main">
     <div class="nav__inner">
@@ -85,13 +85,15 @@
 
   <!-- ===== Where we work ===== -->
   <section class="section" style="padding-top:0;">
-    <div class="container">
-      <span class="section-label reveal">Where we work</span>
-      <p class="reveal reveal-delay-1" style="color:var(--text-muted); font-size:1.05rem; max-width:720px;">
-        We are based at the MRC Laboratory of Medical Sciences (LMS) on the Hammersmith
-        Hospital campus in west London, with access to the institute's core facilities.
-      </p>
-      <figure class="photo reveal reveal-delay-2" style="max-width:760px; margin-top:1.75rem;">
+    <div class="container split">
+      <div>
+        <span class="section-label reveal">Where we work</span>
+        <p class="reveal reveal-delay-1" style="color:var(--text-muted); font-size:1.05rem;">
+          We are based at the MRC Laboratory of Medical Sciences (LMS) on the Hammersmith
+          Hospital campus in west London, with access to the institute's core facilities.
+        </p>
+      </div>
+      <figure class="photo reveal reveal-delay-2">
         <img src="assets/images/lms-staircase.jpg" alt="The central staircase inside the LMS building" loading="lazy">
         <figcaption>Inside the LMS. Image: <a href="https://lms.mrc.ac.uk" target="_blank" rel="noopener">MRC LMS</a></figcaption>
       </figure>
@@ -103,13 +105,10 @@
     <div class="container">
       <span class="section-label reveal">Positions</span>
       <h2 class="section-heading reveal reveal-delay-1">Open positions</h2>
-      <p class="section-subheading reveal reveal-delay-2" style="max-width:none; font-size:1.05rem;">
+      <p class="reveal reveal-delay-2" style="color:var(--text-muted); font-size:1.05rem;">
         Even if no posts are listed, we welcome speculative applications (see below).
-      </p>
-      <p class="reveal reveal-delay-3" style="color:var(--text-muted); font-size:1.05rem;">
         Please check back soon, as we will be advertising positions shortly.
       </p>
-
     </div>
   </section>
 
@@ -156,7 +155,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=10"></script>
+  <script src="js/main.js?v=11"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

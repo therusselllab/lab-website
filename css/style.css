@@ -726,6 +726,16 @@ p:last-child { margin-bottom: 0; }
 .resource-list__desc { font-size: 0.83rem; color: var(--text-muted); }
 
 /* --- Join / Positions --- */
+.page-join .section { padding: 3.5rem 0; }
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .split { grid-template-columns: 1fr; gap: 1.5rem; }
+}
 .position-card {
   padding: 1.75rem;
   border: 1px solid var(--border);
