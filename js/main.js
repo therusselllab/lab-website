@@ -59,6 +59,28 @@
     revealEls.forEach(el => observer.observe(el));
   }
 
+  // --- Analytics: record meaningful clicks as GoatCounter events ---
+  // (page views are counted by the GoatCounter script itself; nothing is sent from localhost)
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a || !window.goatcounter || !window.goatcounter.count) return;
+    const href = a.getAttribute('href') || '';
+    const label = (a.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80);
+    const page = currentPath.replace('.html', '') || 'index';
+    let event = null;
+    if (/\.pdf(\?|$)|pdf=render|\/pdf\//i.test(href) || label === 'PDF' || label === 'Preprint PDF') {
+      const pub = a.closest('.pub-item, .pub-selected')?.querySelector('.pub-item__title')?.textContent.trim();
+      event = 'pdf: ' + (pub || href).slice(0, 100);
+    } else if (href.startsWith('mailto:')) {
+      event = 'email: ' + page;
+    } else if (a.classList.contains('btn')) {
+      event = 'button: ' + label + ' (' + page + ')';
+    } else if (a.host && a.host !== location.host) {
+      event = 'outbound: ' + a.host + a.pathname.replace(/\/$/, '');
+    }
+    if (event) window.goatcounter.count({ path: event, title: label, event: true });
+  });
+
   // --- Hero background parallax ---
   const hero = document.querySelector('.hero');
   if (hero) {
