@@ -59,6 +59,19 @@
     revealEls.forEach(el => observer.observe(el));
   }
 
+  // --- Job listings: hide anything past its data-closes date ---
+  // A plain date closes at the end of that day (UK); a full date-time closes at that moment.
+  const now = new Date();
+  document.querySelectorAll('[data-closes]').forEach(el => {
+    const c = el.dataset.closes;
+    if (now > new Date(c.includes('T') ? c : c + 'T23:59:59Z')) el.remove();
+  });
+  const none = document.querySelector('.positions__none');
+  if (none && !document.querySelector('.position-card')) {
+    none.hidden = false;
+    none.nextElementSibling?.remove();   // drop the duplicate "speculative applications" line
+  }
+
   // --- Analytics: record meaningful clicks as GoatCounter events ---
   // (page views are counted by the GoatCounter script itself; nothing is sent from localhost)
   document.addEventListener('click', e => {

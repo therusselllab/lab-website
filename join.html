@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="stylesheet" href="css/style.css?v=12">
+  <link rel="stylesheet" href="css/style.css?v=13">
 </head>
 <body class="page-join">
 
@@ -105,9 +105,75 @@
     <div class="container">
       <span class="section-label reveal">Positions</span>
       <h2 class="section-heading reveal reveal-delay-1">Open positions</h2>
-      <p class="reveal reveal-delay-2" style="color:var(--text-muted); font-size:1.05rem;">
+
+      <!-- Each card hides itself after its data-closes date (js/main.js) -->
+      <div class="positions">
+        <h3 class="positions__group" data-closes="2026-10-25">Postdoctoral research scientists</h3>
+        <div class="grid-2 positions__grid" data-closes="2026-10-25">
+          <article class="position-card" data-closes="2026-10-25">
+            <span class="position-card__type">Postdoc · Ref 2953</span>
+            <h4 class="position-card__title">Spatial lineage tracing and single-cell multiomics</h4>
+            <p class="position-card__body">
+              Lead the group's work on resolving cell lineage in situ: building on Slide-tags to read
+              somatic mutations and DNA methylation in single cells while keeping their spatial
+              context, and applying this to clonal dynamics in human tissues. A mixed wet/dry,
+              method-development post.
+            </p>
+            <p class="position-card__meta">3 years · Full-time · £42,694 + £5,560 London allowance<br><strong>Closes 25 October 2026</strong></p>
+            <a href="https://fa-evzn-saasfaukgovprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/UKRI-Careers/job/2953" class="btn btn--primary" target="_blank" rel="noopener">Details and apply →</a>
+          </article>
+          <article class="position-card" data-closes="2026-10-25">
+            <span class="position-card__type">Postdoc · Ref 2958</span>
+            <h4 class="position-card__title">Environmental exposure screening</h4>
+            <p class="position-card__body">
+              Establish the group's exposure screening capability: platforms that test many chemicals
+              in parallel with multiplexed, sequencing-based readouts. The post can follow an in vitro
+              strand (organoids or primary human cells) or an in vivo strand (hands-on in vivo
+              experience and a Home Office personal licence, or readiness to obtain one, required).
+            </p>
+            <p class="position-card__meta">3 years · Full-time · £42,694 + £5,560 London allowance<br><strong>Closes 25 October 2026</strong></p>
+            <a href="https://fa-evzn-saasfaukgovprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/UKRI-Careers/job/2958" class="btn btn--primary" target="_blank" rel="noopener">Details and apply →</a>
+          </article>
+        </div>
+
+        <h3 class="positions__group" data-closes="2026-11-18T09:00:00Z">PhD studentships (LMS 4-year programme, starting October 2027)</h3>
+        <div class="grid-2 positions__grid" data-closes="2026-11-18T09:00:00Z">
+          <article class="position-card" data-closes="2026-11-18T09:00:00Z">
+            <span class="position-card__type">PhD</span>
+            <h4 class="position-card__title">Reading tissue history and exposures using spatial single-cell genomics</h4>
+            <p class="position-card__body">Supervisor: Andrew Russell</p>
+            <p class="position-card__meta">£26,500 tax-free stipend, tuition fees covered<br><strong>Apply by 18 November 2026 (9:00)</strong></p>
+            <div class="position-card__actions">
+              <a href="https://lms.mrc.ac.uk/work-and-study/studentships/lms-4-year-phd-studentships/" class="btn btn--primary" target="_blank" rel="noopener">Programme and application →</a>
+              <a href="https://lms.mrc.ac.uk/wp-content/uploads/Russell-Project.docx" class="position-card__link">Project description (Word)</a>
+            </div>
+          </article>
+          <article class="position-card" data-closes="2026-11-18T09:00:00Z">
+            <span class="position-card__type">PhD</span>
+            <h4 class="position-card__title">Spatial and three-dimensional genome regulation during zygotic genome activation</h4>
+            <p class="position-card__body">Supervisors: Juanma Vaquerizas and Andrew Russell</p>
+            <p class="position-card__meta">£26,500 tax-free stipend, tuition fees covered<br><strong>Apply by 18 November 2026 (9:00)</strong></p>
+            <div class="position-card__actions">
+              <a href="https://lms.mrc.ac.uk/work-and-study/studentships/lms-4-year-phd-studentships/" class="btn btn--primary" target="_blank" rel="noopener">Programme and application →</a>
+              <a href="https://lms.mrc.ac.uk/wp-content/uploads/Vaquerizas-Project.docx" class="position-card__link">Project description (Word)</a>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="positions__group">Masters projects</h3>
+        <p class="positions__note">
+          We also host Masters students from Imperial College London programmes. If you are on an
+          Imperial Masters course and would like to do your research project with us, please
+          <a href="mailto:a.russell@lms.mrc.ac.uk">get in touch</a>.
+        </p>
+      </div>
+
+      <p class="positions__none" hidden style="color:var(--text-muted); font-size:1.05rem;">
         Even if no posts are listed, we welcome speculative applications (see below).
         Please check back soon, as we will be advertising positions shortly.
+      </p>
+      <p style="color:var(--text-muted); font-size:1.05rem; margin-top:1.5rem;">
+        We also welcome speculative applications at any time (see below).
       </p>
     </div>
   </section>
@@ -155,7 +221,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=12"></script>
+  <script src="js/main.js?v=13"></script>
   <script data-goatcounter="https://russell-lab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
